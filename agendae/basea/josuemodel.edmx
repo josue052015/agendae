@@ -34,10 +34,26 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="relacion1">
+          <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+          <End Role="correo" Type="Self.correo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="id_persona" />
+            </Principal>
+            <Dependent Role="correo">
+              <PropertyRef Name="id_persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="agendafModelStoreContainer">
           <EntitySet Name="correo" EntityType="Self.correo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="relacion1" Association="Self.relacion1">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="correo" EntitySet="correo" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -51,6 +67,7 @@
           <Property Name="id_correo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="correo1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="id_persona" Type="Int32" />
+          <NavigationProperty Name="persona" Relationship="Self.relacion1" FromRole="correo" ToRole="persona" />
         </EntityType>
         <EntityType Name="persona">
           <Key>
@@ -62,6 +79,7 @@
           <Property Name="numero1" Type="Int32" />
           <Property Name="numero2" Type="Int32" />
           <Property Name="disponible" Type="Boolean" />
+          <NavigationProperty Name="correo" Relationship="Self.relacion1" FromRole="persona" ToRole="correo" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -73,10 +91,26 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <Association Name="relacion1">
+          <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+          <End Role="correo" Type="Self.correo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="id_persona" />
+            </Principal>
+            <Dependent Role="correo">
+              <PropertyRef Name="id_persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="agendafEntiti" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="correo" EntityType="Self.correo" />
           <EntitySet Name="persona" EntityType="Self.persona" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="relacion1" Association="Self.relacion1">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="correo" EntitySet="correo" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>

@@ -13,11 +13,33 @@ namespace agendae.Controllers
     public class correosController : Controller
     {
         private agendafEntiti db = new agendafEntiti();
+        private agendafEntiti pj = new agendafEntiti();
+       
 
         // GET: correos
         public ActionResult Index()
         {
-            return View(db.correo.ToList());
+           /*
+
+             var INFO = (from P in db.persona
+                         where P.disponible == false
+                         select P);
+            var INFA = (from P in db.persona
+                        join r in db.correo
+                        where P.disponible == false
+                        select P);
+                        */
+
+            /*    var IN = (from P in db.correo
+                            where P.id_persona == Convert.ToInt64(INFO)
+                            select P);*/
+
+
+            /* var correo = db.correo.Include(c => c.persona);
+              return View(correo.ToList());*/
+            var correo = db.correo.Include(c => c.persona);
+          
+            return View(correo.ToList().Except(db.correo));
         }
 
         // GET: correos/Details/5
@@ -38,6 +60,7 @@ namespace agendae.Controllers
         // GET: correos/Create
         public ActionResult Create()
         {
+           
             return View();
         }
 
@@ -53,8 +76,14 @@ namespace agendae.Controllers
                 db.correo.Add(correo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+
             }
 
+          /*  var INFO = (from P in db.persona
+                        where P.disponible == true
+                        select P);*/
+          /*  ViewBag.id_persona = new SelectList(INFO);*/
+            /*  ViewBag.id_persona = new SelectList(db.persona, "id_persona", "nombre", correo.id_persona);*/
             return View(correo);
         }
 
@@ -70,6 +99,7 @@ namespace agendae.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.id_persona = new SelectList(db.persona, "id_persona", "nombre", correo.id_persona);
             return View(correo);
         }
 
@@ -82,10 +112,12 @@ namespace agendae.Controllers
         {
             if (ModelState.IsValid)
             {
+             
                 db.Entry(correo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.id_persona = new SelectList(db.persona, "id_persona", "nombre", correo.id_persona);
             return View(correo);
         }
 

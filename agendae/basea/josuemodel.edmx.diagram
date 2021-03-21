@@ -4,10 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="091d864739d741beacabff8314cd8c2a" Name="Diagram1">
-        <EntityTypeShape EntityType="agendafModel.correo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="agendafModel.persona" Width="1.625" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="agendafModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="2acbe192c4154e838ca6cdebd952bdb1" Name="Diagram1">
+        <EntityTypeShape EntityType="agendafModel.correo" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="agendafModel.persona" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="agendafModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="agendafModel.relacion1" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

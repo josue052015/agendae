@@ -11,11 +11,39 @@ namespace agendae.basea
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class correo
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class correo: IValidatableObject
     {
+
+        
+        private agendafEntiti db = new agendafEntiti();
+
+
         public int id_correo { get; set; }
+        [Required]
         public string correo1 { get; set; }
+        [Required]
         public Nullable<int> id_persona { get; set; }
+    
+        public virtual persona persona { get; set; }
+
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var errores = new List<ValidationResult>();
+            var hola = db.persona.Find(id_persona);
+            if (hola.disponible == false)
+
+            {
+                errores.Add(new ValidationResult("la persona no existe"));
+            }
+
+           
+            
+        
+
+            return errores;
+        }
     }
 }

@@ -29,9 +29,25 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <Association Name="relacion1">
+    <End Role="persona" Type="Self.persona" Multiplicity="0..1" />
+    <End Role="correo" Type="Self.correo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="persona">
+        <PropertyRef Name="id_persona" />
+      </Principal>
+      <Dependent Role="correo">
+        <PropertyRef Name="id_persona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="agendafModelStoreContainer">
     <EntitySet Name="correo" EntityType="Self.correo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="relacion1" Association="Self.relacion1">
+      <End Role="persona" EntitySet="persona" />
+      <End Role="correo" EntitySet="correo" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

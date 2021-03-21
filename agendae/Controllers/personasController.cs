@@ -17,6 +17,7 @@ namespace agendae.Controllers
         // GET: personas
         public ActionResult Index(/*[Bind(Include = "id_persona,nombre,apellido,numero1,numero2,disponible")] persona persona*/)
         {
+           
             var INFO = (from P in db.persona
                         where P.disponible== true
                         select P);
@@ -30,7 +31,8 @@ namespace agendae.Controllers
             {
                 return View(INFO.ToList());
             }
-
+            
+          /*  return View(db.persona.ToList());*/
 
         }
 
@@ -66,22 +68,19 @@ namespace agendae.Controllers
 
             if (ModelState.IsValid)
             {
-                 if(persona.numero1 == null && persona.numero2 == null)
-                {
-                   /*Mensaje*/
-                }
-                 else
-                { 
-
+  
                 db.persona.Add(persona);
                 persona.disponible = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-                     }
-                }
+            }
+        
 
             return View(persona);
-        }
+            
+             
+
+            }
 
         // GET: personas/Edit/5
         public ActionResult Edit(int? id)
@@ -136,7 +135,8 @@ namespace agendae.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             persona persona = db.persona.Find(id);
-            db.persona.Remove(persona);
+            /*   db.persona.Remove(persona);*/
+            persona.disponible = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
