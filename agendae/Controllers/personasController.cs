@@ -17,23 +17,25 @@ namespace agendae.Controllers
         // GET: personas
         public ActionResult Index(/*[Bind(Include = "id_persona,nombre,apellido,numero1,numero2,disponible")] persona persona*/)
         {
-           
-            var INFO = (from P in db.persona
-                        where P.disponible== true
-                        select P);
-            
-                        if(INFO == null)
-                        {
-                return View();
-              
-                        }
-                        else
-            {
-                return View(INFO.ToList());
-            }
-            
-          /*  return View(db.persona.ToList());*/
 
+            
+             var INFO = (from P in db.persona
+                         where P.disponible== true
+                         select P);
+
+                         if(INFO == null)
+                         {
+                 return View();
+
+                         }
+                         else
+             {
+                 return View(INFO.ToList());
+             }
+             
+
+            /*  return View(db.persona.ToList());*/
+           
         }
 
         // GET: personas/Details/5

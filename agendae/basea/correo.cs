@@ -33,15 +33,32 @@ namespace agendae.basea
         {
             var errores = new List<ValidationResult>();
             var hola = db.persona.Find(id_persona);
+
+            if (hola == null)
+
+            {
+                errores.Add(new ValidationResult("la persona no existe"));
+            }
+            else
+            {
+                if (hola.disponible == false)
+
+                {
+                    errores.Add(new ValidationResult("la persona no existe"));
+                }
+
+            }
+            /*
             if (hola.disponible == false)
 
             {
                 errores.Add(new ValidationResult("la persona no existe"));
             }
 
-           
-            
-        
+
+    */
+
+
 
             return errores;
         }
