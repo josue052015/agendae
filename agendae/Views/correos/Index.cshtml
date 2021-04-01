@@ -9,7 +9,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<div class="form-group">
+    <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Type to search table...">
+</div>
+<table class="table" id="mytable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.correo1)
