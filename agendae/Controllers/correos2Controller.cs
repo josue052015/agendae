@@ -10,46 +10,18 @@ using agendae.basea;
 
 namespace agendae.Controllers
 {
-    public class correosController : Controller
+    public class correos2Controller : Controller
     {
         private agendafEntiti db = new agendafEntiti();
-        private agendafEntiti pj = new agendafEntiti();
-       
 
-        // GET: correos
+        // GET: correos2
         public ActionResult Index()
         {
-           /*
-
-             var INFO = (from P in db.persona
-                        where P.disponible == false
-                        select P);
-            var INFA = (from P in db.persona
-                        join r in db.correo
-                        where P.disponible == false
-                        select P);
-                        */
-/*
-               var IN = (from P in db.correo
-                            where P.id_persona == db.persona.Find(id_persona)
-                            select P);
-*/
-
-             /* var correo = db.correo.Include(c => c.persona);
-              return View(correo.ToList());*/
-
-     
-
-
-
             var correo = db.correo.Include(c => c.persona);
-            /*
-              return View(correo.ToList().Except(db.correo));
-              */
             return View(correo.ToList());
         }
 
-        // GET: correos/Details/5
+        // GET: correos2/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -64,19 +36,14 @@ namespace agendae.Controllers
             return View(correo);
         }
 
-        // GET: correos/Create
+        // GET: correos2/Create
         public ActionResult Create()
         {
-
-            var INFO = (from P in db.persona
-                        where P.disponible == true
-                        select P);
-            ViewBag.id_persona = new SelectList(INFO, "id_persona", "nombre");
-            /* ViewBag.id_persona = new SelectList(db.persona, "id_persona", "nombre");*/
+            ViewBag.id_persona = new SelectList(db.persona, "id_persona", "nombre");
             return View();
         }
 
-        // POST: correos/Create
+        // POST: correos2/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -88,18 +55,13 @@ namespace agendae.Controllers
                 db.correo.Add(correo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-
             }
 
-            var INFO = (from P in db.persona
-                        where P.disponible == true
-                        select P);
-            ViewBag.id_persona = new SelectList(INFO, "id_persona", "nombre");
-          /*    ViewBag.id_persona = new SelectList(db.persona, "id_persona", "nombre", correo.id_persona);*/
+            ViewBag.id_persona = new SelectList(db.persona, "id_persona", "nombre", correo.id_persona);
             return View(correo);
         }
 
-        // GET: correos/Edit/5
+        // GET: correos2/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -115,7 +77,7 @@ namespace agendae.Controllers
             return View(correo);
         }
 
-        // POST: correos/Edit/5
+        // POST: correos2/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -124,7 +86,6 @@ namespace agendae.Controllers
         {
             if (ModelState.IsValid)
             {
-             
                 db.Entry(correo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -133,7 +94,7 @@ namespace agendae.Controllers
             return View(correo);
         }
 
-        // GET: correos/Delete/5
+        // GET: correos2/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -148,7 +109,7 @@ namespace agendae.Controllers
             return View(correo);
         }
 
-        // POST: correos/Delete/5
+        // POST: correos2/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -152,6 +152,7 @@
     <Compile Include="basea\sysdiagrams.cs">
       <DependentUpon>josuemodel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\correos2Controller.cs" />
     <Compile Include="Controllers\correosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\personasController.cs" />
@@ -218,11 +219,16 @@
     <Content Include="Views\personas\Details.cshtml" />
     <Content Include="Views\personas\Edit.cshtml" />
     <Content Include="Views\personas\Index.cshtml" />
-    <Content Include="Views\correos\Create.cshtml" />
     <Content Include="Views\correos\Delete.cshtml" />
     <Content Include="Views\correos\Details.cshtml" />
     <Content Include="Views\correos\Edit.cshtml" />
     <Content Include="Views\correos\Index.cshtml" />
+    <Content Include="Views\correos2\Create.cshtml" />
+    <Content Include="Views\correos2\Delete.cshtml" />
+    <Content Include="Views\correos2\Details.cshtml" />
+    <Content Include="Views\correos2\Edit.cshtml" />
+    <Content Include="Views\correos2\Index.cshtml" />
+    <Content Include="Views\correos\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
