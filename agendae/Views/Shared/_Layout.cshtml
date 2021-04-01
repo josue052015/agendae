@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Scripts/select2/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,6 +42,10 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/select2/js/select2.full.min.js"></script>
+    <script src="~/Scripts/select2/js/select2.min.js"></script>
+    <script src="~/Scripts/select2/js/select2.full.js"></script>
+    <script src="~/Scripts/select2/js/select2.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
