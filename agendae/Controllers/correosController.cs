@@ -19,30 +19,33 @@ namespace agendae.Controllers
         // GET: correos
         public ActionResult Index()
         {
-           /*
+            /*
 
-             var INFO = (from P in db.persona
-                        where P.disponible == false
-                        select P);
-            var INFA = (from P in db.persona
-                        join r in db.correo
-                        where P.disponible == false
-                        select P);
-                        */
-/*
-               var IN = (from P in db.correo
-                            where P.id_persona == db.persona.Find(id_persona)
-                            select P);
-*/
+              var INFO = (from P in db.persona
+                         where P.disponible == false
+                         select P);
+             var INFA = (from P in db.persona
+                         join r in db.correo
+                         where P.disponible == false
+                         select P);
+                         */
+            /*
+                           var IN = (from P in db.correo
+                                        where P.id_persona == db.persona.Find(id_persona)
+                                        select P);
+            */
 
-             /* var correo = db.correo.Include(c => c.persona);
-              return View(correo.ToList());*/
-
-     
+            /* var correo = db.correo.Include(c => c.persona);
+             return View(correo.ToList());*/
 
 
 
-            var correo = db.correo.Include(c => c.persona);
+
+            ////var personas = db.persona.Where(c => c.disponible == true).ToList();
+            var correo = db.correo.ToList();
+
+
+            //dynamic correosActivos = personas.Where(p => correo.Select(x => x.id_persona == p.id_persona));
             /*
               return View(correo.ToList().Except(db.correo));
               */
